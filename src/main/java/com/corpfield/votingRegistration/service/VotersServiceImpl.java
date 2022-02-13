@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.corpfield.votingRegistration.utils.Queryutils.convertObjtoLong;
-import static com.corpfield.votingRegistration.utils.Queryutils.convertObjtoString;
+import static com.corpfield.votingRegistration.utils.QueryUtils.*;
 
 @Service
 public class VotersServiceImpl implements VotersService {
@@ -77,11 +76,11 @@ public class VotersServiceImpl implements VotersService {
         List<VotersListResDto> obj = new ArrayList<>();
         for(Object[] row:queryResult){
             VotersListResDto dto=new VotersListResDto();
-            dto.setVoterId(convertObjtoLong(row[0]));
-            dto.setFullName(convertObjtoString(row[1]));
-            dto.setAddress(convertObjtoString(row[2]));
-            dto.setPartyId(convertObjtoLong(row[3]));
-            dto.setPartyName(convertObjtoString(row[4]));
+            dto.setVoterId(convertObjToLong(row[0]));
+            dto.setFullName(convertObjToString(row[1]));
+            dto.setAddress(convertObjToString(row[2]));
+            dto.setPartyId(convertObjToLong(row[3]));
+            dto.setPartyName(convertObjToString(row[4]));
             obj.add(dto);
         }
         return obj;
