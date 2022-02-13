@@ -58,19 +58,24 @@ public class PartyServiceImpl implements PartyService {
         try {
             List<Object[]> queryResult = partiesDao.getPartiesWith(pageable);
             int totalParties = partiesDao.getTotalParties();
-            List<PartyListResDto> parties = new ArrayList<>();
-            for (Object[] row : queryResult) {
-                PartyListResDto dto = new PartyListResDto();
-                dto.setPartyId(convertObjToLong(row[0]));
-                dto.setPartyName(convertObjToString(row[1]));
-                parties.add(dto);
-            }
+            List<PartyListResDto> parties = getPartyDetails(queryResult);
             Page<PartyListResDto> pagedParty = new PageImpl<>(parties,pageable,totalParties);
             return pagedParty;
         }catch (Exception e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private List<PartyListResDto> getPartyDetails(List<Object[]> queryResult) {
+        List<PartyListResDto> parties = new ArrayList<>();
+        for (Object[] row : queryResult) {
+            PartyListResDto dto = new PartyListResDto();
+            dto.setPartyId(convertObjToLong(row[0]));
+            dto.setPartyName(convertObjToString(row[1]));
+            parties.add(dto);
+        }
+        return parties;
     }
 
 }
