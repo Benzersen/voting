@@ -73,6 +73,25 @@ public class VotersServiceImpl implements VotersService {
         }
 
     }
+
+    @Override
+    public Page<VotersListResDto> listvotersbypage(Pageable pageable, long partyId) {
+        try {
+            List<Object[]> queryResult = votersdao.getvoterswithpage(pageable);
+            int totalvoters=votersdao.getTotalvoters();
+            List<VotersListResDto> voters = getVotersList(queryResult);
+            Page<VotersListResDto> Pagedvoters=new PageImpl<>(voters,pageable,totalvoters);
+            return Pagedvoters;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+
+
     private List<VotersListResDto> getVotersList(List<Object[]> queryResult){
         List<VotersListResDto> obj = new ArrayList<>();
         for(Object[] row:queryResult){

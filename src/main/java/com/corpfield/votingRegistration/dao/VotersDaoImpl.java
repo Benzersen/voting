@@ -29,11 +29,41 @@ public class VotersDaoImpl implements VotersDao {
     }
 
     @Override
+    public List<Object[]> getvoterswithpage(Pageable pageable, long partyId) {
+        String myquery = "select  " +
+                "voters.voter_id, " +
+                "voters.full_name, " +
+                "voters.address, " +
+                "parties.party_id, " +
+                "parties.party_name " +
+                "from voters " +
+                "inner join parties on parties.party_id=voters.party_id"+
+                "where parties.party_id=:party_Id";
+        Query query = em.createNativeQuery(myquery);
+        query.setParameter("partyId",partyId);
+        query.setFirstResult(pageable.getPageNumber()* pageable.getPageSize());
+        query.setMaxResults(pageable.getPageSize());
+        return query.getResultList();
+    }
+
+
+    @Override
     public int getTotalvoters() {
         String myquery = "select " +
                 "count(*) " +
                 "     from voters ";
         Query query = em.createNativeQuery(myquery);
+        String result=String.valueOf(query.getSingleResult());
+        return Integer.parseInt(result);
+    }
+    @Override
+    public int getTotalvoters(long partyId) {
+        String myquery = "select " +
+                "count(*) " +
+                "     from voters "+
+                "where parties.party_id=:party_Id";
+        Query query = em.createNativeQuery(myquery);
+        query.setParameter("partyId",partyId);
         String result=String.valueOf(query.getSingleResult());
         return Integer.parseInt(result);
     }

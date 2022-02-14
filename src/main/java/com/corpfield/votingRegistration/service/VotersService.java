@@ -12,4 +12,6 @@ public interface VotersService {
     public void editvoter(VotersEditReqDto reqDto);
 
     public Page<VotersListResDto> listvotersbypage(Pageable pageable);
+
+    public Page<VotersListResDto> listvotersbypage(Pageable pageable,long partyId);
 }

@@ -35,5 +35,10 @@ public class VotersController {
         return new ResponseEntity<>(voters,HttpStatus.OK);
     }
 
+    @GetMapping("/voters:PartyId")
+    public ResponseEntity<Page<VotersListResDto>> getvotersbypaged(@PageableDefault(size = 2) Pageable myPageable,@RequestParam("partyId") long partyId){
+        Page<VotersListResDto> voters=votersservice.listvotersbypage(myPageable,partyId);
+        return new ResponseEntity<>(voters,HttpStatus.OK);
+    }
 
 }
