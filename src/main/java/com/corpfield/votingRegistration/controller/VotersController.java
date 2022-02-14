@@ -1,5 +1,6 @@
 package com.corpfield.votingRegistration.controller;
 
+import com.corpfield.votingRegistration.dto.ResponseDto;
 import com.corpfield.votingRegistration.dto.VotersCreateReqDto;
 import com.corpfield.votingRegistration.dto.VotersEditReqDto;
 import com.corpfield.votingRegistration.dto.VotersListResDto;
@@ -18,27 +19,28 @@ public class VotersController {
     VotersService votersservice;
 
     @PostMapping("/voters")
-    public ResponseEntity<String> createvoter(@RequestBody VotersCreateReqDto  reqDto) {
-        votersservice.createvoter(reqDto);
-        return new ResponseEntity<>("OK", HttpStatus.OK);
+    public ResponseEntity<ResponseDto> createVoter(@RequestBody VotersCreateReqDto  reqDto) {
+        ResponseDto response=votersservice.createVoter(reqDto);
+        return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
+
     }
 
     @PutMapping("/voters")
-    public ResponseEntity<String> editvoter(@RequestBody VotersEditReqDto reqDto) {
-        votersservice.editvoter(reqDto);
-        return new ResponseEntity<>("OK", HttpStatus.OK);
+    public ResponseEntity<ResponseDto> editVoter(@RequestBody VotersEditReqDto reqDto) {
+        ResponseDto response=votersservice.editVoter(reqDto);
+        return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
     }
 
     @GetMapping("/voters")
-    public ResponseEntity<Page<VotersListResDto>> getvotersbypaged(@PageableDefault(size = 2) Pageable myPageable){
-        Page<VotersListResDto> voters=votersservice.listvotersbypage(myPageable);
-        return new ResponseEntity<>(voters,HttpStatus.OK);
+    public ResponseEntity<ResponseDto> getVotersByPaged(@PageableDefault(size = 2) Pageable myPageable){
+         ResponseDto response=votersservice.listVotersByPage(myPageable);
+        return new ResponseEntity<>(response,HttpStatus.valueOf(response.getStatus()));
     }
 
     @GetMapping("/voters:PartyId")
-    public ResponseEntity<Page<VotersListResDto>> getvotersbypaged(@PageableDefault(size = 2) Pageable myPageable,@RequestParam("partyId") long partyId){
-        Page<VotersListResDto> voters=votersservice.listvotersbypage(myPageable,partyId);
-        return new ResponseEntity<>(voters,HttpStatus.OK);
+    public ResponseEntity<ResponseDto> getVotersByPaged(@PageableDefault(size = 2) Pageable myPageable,@RequestParam("partyId") long partyId){
+        ResponseDto response =votersservice.listVotersByPage(myPageable,partyId);
+        return new ResponseEntity<>(response,HttpStatus.valueOf(response.getStatus()));
     }
 
 }
