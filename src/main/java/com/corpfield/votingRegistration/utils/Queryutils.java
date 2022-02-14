@@ -1,7 +1,7 @@
 package com.corpfield.votingRegistration.utils;
 
 public class Queryutils {
-        public static long convertObjtoLong(Object obj){
+        public static long convertObjToLong(Object obj){
             if(obj==null){
                 return 0;
             }
@@ -9,7 +9,7 @@ public class Queryutils {
                 return Long.parseLong(String.valueOf(obj));
             }
         }
-        public static String convertObjtoString(Object obj){
+        public static String convertObjToString(Object obj){
             if(obj==null){
                 return "";
             }
