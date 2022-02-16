@@ -1,5 +1,4 @@
 package com.corpfield.votingRegistration.utils;
-
 public class QueryUtils {
         public static long convertObjToLong(Object obj){
             if(obj==null){
