@@ -3,16 +3,16 @@ package com.corpfield.votingRegistration.service;
 import com.corpfield.votingRegistration.dto.CreatePartyReqDto;
 import com.corpfield.votingRegistration.dto.EditPartyReqDto;
 import com.corpfield.votingRegistration.dto.PartyListResDto;
+import com.corpfield.votingRegistration.dto.responseDto.ResponseDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface PartyService {
 
-    public void createParty(CreatePartyReqDto partyReqDto);
+    public ResponseDto createParty(CreatePartyReqDto partyReqDto);
 
-    void editPartyDetail(EditPartyReqDto reqDto);
+    public ResponseDto editPartyDetail(EditPartyReqDto reqDto);
 
-    Page<PartyListResDto> ListPartyDetails(Pageable pageable);
-
+    public ResponseDto ListPartyDetails(Pageable pageable);
 
 }

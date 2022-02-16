@@ -9,4 +9,5 @@ public class EditPartyReqDto {
     private long partyId;
 
     private String partyName;
+
 }

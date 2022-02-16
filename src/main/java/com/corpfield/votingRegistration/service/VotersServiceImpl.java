@@ -27,7 +27,7 @@ public class VotersServiceImpl implements VotersService {
     VotersDao votersdao;
 
     @Override
-    public void createvoter(VotersCreateReqDto reqDto) {
+    public void createVoter(VotersCreateReqDto reqDto) {
         try{
             Voters voter=new Voters();
             voter.setFullName(reqDto.getFullName());
@@ -41,11 +41,11 @@ public class VotersServiceImpl implements VotersService {
     }
 
     @Override
-    public void editvoter(VotersEditReqDto reqDto) {
+    public void editVoter(VotersEditReqDto reqDto ) {
         try{
-            Optional<Voters> optionalvoter=votersrepo.findById(reqDto.getVoterId());
-            if(optionalvoter.isPresent()){
-                Voters voter=optionalvoter.get();
+            Optional<Voters> optionalVoter=votersrepo.findById(reqDto.getVoterId());
+            if(optionalVoter.isPresent()){
+                Voters voter=optionalVoter.get();
                 voter.setFullName(reqDto.getFullName());
                 voter.setAddress(reqDto.getAddress());
                 votersrepo.save(voter);
@@ -58,13 +58,13 @@ public class VotersServiceImpl implements VotersService {
     }
 
     @Override
-    public Page<VotersListResDto> listvotersbypage(Pageable pageable) {
+    public Page<VotersListResDto> listVotersByPage(Pageable pageable) {
         try {
             List<Object[]> queryResult = votersdao.getvoterswithpage(pageable);
-            int totalvoters=votersdao.getTotalvoters();
+            int totalVoters=votersdao.getTotalvoters();
             List<VotersListResDto> voters = getVotersList(queryResult);
-            Page<VotersListResDto> Pagedvoters=new PageImpl<>(voters,pageable,totalvoters);
-            return Pagedvoters;
+            Page<VotersListResDto> PagedVoters=new PageImpl<>(voters,pageable,totalVoters);
+            return PagedVoters;
         }
         catch (Exception e) {
             e.printStackTrace();

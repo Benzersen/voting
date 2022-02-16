@@ -7,9 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface VotersService {
-    public void createvoter(VotersCreateReqDto reqDto);
+    public void createVoter(VotersCreateReqDto reqDto);
 
-    public void editvoter(VotersEditReqDto reqDto);
+    public void editVoter(VotersEditReqDto reqDto);
 
-    public Page<VotersListResDto> listvotersbypage(Pageable pageable);
+    public Page<VotersListResDto> listVotersByPage(Pageable pageable);
 }

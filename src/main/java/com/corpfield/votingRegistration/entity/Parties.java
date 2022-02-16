@@ -18,5 +18,4 @@ public class Parties {
     @Column(name = "party_name")
     private String partyName;
 
-
 }

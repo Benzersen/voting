@@ -7,6 +7,5 @@ import java.util.List;
 public interface VotersDao {
     public List<Object[]> getvoterswithpage(Pageable pageable);
 
-
     public int getTotalvoters();
 }

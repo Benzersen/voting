@@ -18,22 +18,21 @@ public class VotersController {
     VotersService votersservice;
 
     @PostMapping("/voters")
-    public ResponseEntity<String> createvoter(@RequestBody VotersCreateReqDto  reqDto) {
-        votersservice.createvoter(reqDto);
+    public ResponseEntity<String> createVoter(@RequestBody VotersCreateReqDto  reqDto) {
+        votersservice.createVoter(reqDto);
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
 
     @PutMapping("/voters")
-    public ResponseEntity<String> editvoter(@RequestBody VotersEditReqDto reqDto) {
-        votersservice.editvoter(reqDto);
+    public ResponseEntity<String> editVoter(@RequestBody VotersEditReqDto reqDto) {
+        votersservice.editVoter(reqDto);
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
 
     @GetMapping("/voters")
-    public ResponseEntity<Page<VotersListResDto>> getvotersbypaged(@PageableDefault(size = 2) Pageable myPageable){
-        Page<VotersListResDto> voters=votersservice.listvotersbypage(myPageable);
+    public ResponseEntity<Page<VotersListResDto>> getVotersByPaged(@PageableDefault(size = 2) Pageable myPageable){
+        Page<VotersListResDto> voters=votersservice.listVotersByPage(myPageable);
         return new ResponseEntity<>(voters,HttpStatus.OK);
     }
-
 
 }

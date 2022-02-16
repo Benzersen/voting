@@ -34,4 +34,5 @@ public class PartiesDaoImpl implements PartiesDao {
         String result = String.valueOf(query.getSingleResult());
         return Integer.parseInt(result);
     }
+
 }
