@@ -8,4 +8,5 @@ public interface PartiesDao {
     public List<Object[]> getPartiesWith(Pageable myPageable);
 
     int getTotalParties();
+
 }

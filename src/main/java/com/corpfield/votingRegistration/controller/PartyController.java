@@ -4,6 +4,7 @@ package com.corpfield.votingRegistration.controller;
 import com.corpfield.votingRegistration.dto.CreatePartyReqDto;
 import com.corpfield.votingRegistration.dto.EditPartyReqDto;
 import com.corpfield.votingRegistration.dto.PartyListResDto;
+import com.corpfield.votingRegistration.dto.responseDto.ResponseDto;
 import com.corpfield.votingRegistration.service.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,26 +20,25 @@ public class PartyController {
     @Autowired
     PartyService myPartyService;
 
+
     @PostMapping("/party")
-    public ResponseEntity<String> createParty(@RequestBody CreatePartyReqDto partyReqDto) {
-        myPartyService.createParty(partyReqDto);
-        return new ResponseEntity<>("OK", HttpStatus.OK);
+    public ResponseEntity<ResponseDto> createParty(@RequestBody CreatePartyReqDto partyReqDto) {
+        ResponseDto response = myPartyService.createParty(partyReqDto);
+        return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
     }
 
-
     @PutMapping("/party")
-    public ResponseEntity<String> editPartyDetail (@RequestBody EditPartyReqDto reqDto) {
-        myPartyService.editPartyDetail(reqDto);
-        return new ResponseEntity<>("OK",HttpStatus.OK);
+    public ResponseEntity<ResponseDto> editPartyDetail (@RequestBody EditPartyReqDto reqDto) {
+        ResponseDto response = myPartyService.editPartyDetail(reqDto);
+        return new ResponseEntity<>(response,HttpStatus.valueOf(response.getStatus()));
     }
 
     @GetMapping("/party/{paged}")
-    public ResponseEntity<Page<PartyListResDto>> ListPartyDetails (
+    public ResponseEntity<ResponseDto> ListPartyDetails (
             @PageableDefault(size = 2) Pageable pageable
     ) {
-        Page<PartyListResDto> resDto = myPartyService.ListPartyDetails(pageable);
-        return new ResponseEntity<>(resDto,HttpStatus.OK);
+        ResponseDto response = myPartyService.ListPartyDetails(pageable);
+        return new ResponseEntity<>(response,HttpStatus.valueOf(response.getStatus()));
     }
-
 
 }
