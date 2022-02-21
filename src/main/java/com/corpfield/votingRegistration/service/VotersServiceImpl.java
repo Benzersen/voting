@@ -39,9 +39,7 @@ public class VotersServiceImpl implements VotersService {
     @Override
     public ResponseDto createVoter(VotersCreateReqDto reqDto) {
         try {
-            Voters voter = new Voters();
-            voter.setFullName(reqDto.getFullName());
-            voter.setAddress(reqDto.getAddress());
+            Voters voter = reqDto.convertDtoToEntity();
             Optional<Parties> partyoptional = partyRepo.findById(reqDto.getPartyId());
             if (partyoptional.isPresent()) {
                 Parties party = partyoptional.get();
@@ -62,8 +60,7 @@ public class VotersServiceImpl implements VotersService {
             Optional<Voters> optionalvoter = votersrepo.findById(reqDto.getVoterId());
             if (optionalvoter.isPresent()) {
                 Voters voter = optionalvoter.get();
-                voter.setFullName(reqDto.getFullName());
-                voter.setAddress(reqDto.getAddress());
+                reqDto.convertDtoToEntity(voter);
                 Optional<Parties> partyoptional = partyRepo.findById(reqDto.getPartyId());
                 if (partyoptional.isPresent()) {
                     Parties party = partyoptional.get();
