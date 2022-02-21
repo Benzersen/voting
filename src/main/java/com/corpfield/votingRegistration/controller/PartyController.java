@@ -4,7 +4,7 @@ package com.corpfield.votingRegistration.controller;
 import com.corpfield.votingRegistration.dto.CreatePartyReqDto;
 import com.corpfield.votingRegistration.dto.EditPartyReqDto;
 import com.corpfield.votingRegistration.dto.PartyListResDto;
-import com.corpfield.votingRegistration.dto.responseDto.ResponseDto;
+import com.corpfield.votingRegistration.dto.ResponseDto;
 import com.corpfield.votingRegistration.service.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

@@ -66,6 +66,7 @@ public class VotersServiceImpl implements VotersService {
                     Parties party = partyoptional.get();
                     voter.setParties(party);
                 }
+
                 votersrepo.save(voter);
             }
                 String response = "you have voted successfully";
@@ -80,12 +81,14 @@ public class VotersServiceImpl implements VotersService {
 
     @Override
     public ResponseDto listVotersByPage(Pageable pageable) {
+
         try {
             List<Object[]> queryResult = votersdao.getvoterswithpage(pageable);
-            int totalvoters=votersdao.getTotalvoters();
+            int totalVoters=votersdao.getTotalvoters();
             List<VotersListResDto> voters = getVotersList(queryResult);
-            Page<VotersListResDto> Pagedvoters=new PageImpl<>(voters,pageable,totalvoters);
-            return new ResponseDto(Pagedvoters, ResponseCodes.SUCCESS);
+            Page<VotersListResDto> PagedVoters=new PageImpl<>(voters,pageable,totalVoters);
+            return new ResponseDto(PagedVoters, ResponseCodes.SUCCESS);
+
         }
         catch (Exception e) {
             return ServiceException.sendErrorResponse(e);

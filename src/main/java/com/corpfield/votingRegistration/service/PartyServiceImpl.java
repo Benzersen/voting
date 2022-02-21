@@ -5,7 +5,7 @@ import com.corpfield.votingRegistration.dao.PartiesDao;
 import com.corpfield.votingRegistration.dto.CreatePartyReqDto;
 import com.corpfield.votingRegistration.dto.EditPartyReqDto;
 import com.corpfield.votingRegistration.dto.PartyListResDto;
-import com.corpfield.votingRegistration.dto.responseDto.ResponseDto;
+import com.corpfield.votingRegistration.dto.ResponseDto;
 import com.corpfield.votingRegistration.entity.Parties;
 import com.corpfield.votingRegistration.exceptions.ServiceException;
 import com.corpfield.votingRegistration.repo.PartiesRepo;
